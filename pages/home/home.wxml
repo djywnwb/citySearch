@@ -1,1 +1,38 @@
-<!--pages/home/home.wxml-->
+<form>
+    <input type="text" class="address" disabled value="{{value}}" />
+    <button bindtap="popupmask">选择地区</button>
+</form>
+<!-- 级联框组件 -->
+<view class="mask" wx:if="{{maskstate}}">
+    <!-- 左上角关闭按钮 -->
+    <view class="Shut" bindtap="shutDown">
+        <icon type="clear"></icon>
+    </view>
+    <view class="title">
+        <text>请选择地区</text>
+    </view>
+    <!-- 搜索模块 -->
+    <view class="search">
+        <input type="text" value="{{inputval}}" bindinput="isquery" />
+        <button type="primary" disabled="{{onquery}}" class="searchbtn" bindtap="clickSearch">搜索</button>
+    </view>
+    <scroll-view bindscrolltolower="lodingData" lower-threshold="150" scroll-y class="choose">
+        <!-- 利用choos控制表单的显示和隐藏 -->
+        <view class="province" wx:if="{{choose===0}}">
+            <block wx:for="{{province}}" wx:key="index">
+                <view bindtap="getprovince" data-province="{{item}}" >{{item.name}}</view>
+            </block>
+        </view>
+        <view class="cities" wx:if="{{choose===1}}">
+            <block wx:for="{{cities}}" wx:key="index">
+                <view bindtap="getcities" data-cities="{{item}}" wx:if="{{item.name===query?item.name:query===''?item.name:false}}">{{item.name}}</view>
+            </block>
+        </view>
+        <view class="county" wx:if="{{choose===2}}">
+            <block wx:for="{{county}}" wx:key="index">
+                <view bindtap="getcounty" data-county="{{item}}" wx:if="{{item.name===query?item.name:query===''?item.name:false}}">{{item.name}}</view>
+            </block>
+        </view>
+        <view class="end" wx:if="{{end}}">没有更多了...</view>
+    </scroll-view>
+</view>

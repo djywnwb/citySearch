@@ -1,11 +1,35 @@
-# 数据
+
+
+
+
+## API
+
+查询数据库API
+
+```text
+POST https://api.weixin.qq.com/tcb/databasequery?access_token=ACCESS_TOKEN
+```
+
+
+
+字段说明：
+
+|   请求属性   |  类型  | 必填 |      说明      |
+| :----------: | :----: | :--: | :------------: |
+| access_token | string |  是  |  接口调用凭证  |
+|     env      | string |  是  |    云环境ID    |
+|    query     | string |  是  | 数据库操作语句 |
+
+
+
+## 数据
 
 
 
 展示其中一条数据格式
-说明：
+说明： 
 level：0 省份  1地市  2区县
-
+supplement:数据原因只有第一页做了滚动加载,和关键字搜索
 ```json
 {
  "_id":"0e3a872961cfa49402f3b9ad1462e7ff",

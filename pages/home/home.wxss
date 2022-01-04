@@ -1,1 +1,80 @@
 /* pages/home/home.wxss */
+page{
+    font-size: 32rpx;
+}
+.address {
+    width: 300rpx;
+    height: 80rpx;
+    margin: 20rpx auto;
+    background-color: #e4e4e4;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* display: none; */
+    background-color: #ffffff;
+    z-index: 2;
+}
+
+.title {
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+}
+
+.Shut {
+    position: absolute;
+    top: 10rpx;
+    left: 10rpx;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.Shut icon {
+    width: 100%;
+    height: 100%;
+}
+
+.search {
+    display: flex;
+}
+
+.search input {
+    width: 100%;
+    height: 80rpx;
+    padding-left: 10rpx;
+    background-color: #f8f8f8;
+}
+
+.search .searchbtn {
+    width: 240rpx;
+}
+
+.choose {
+    height: 1026rpx;
+    width: 100%;
+}
+
+.province view,
+.cities view,
+.county view {
+    padding-left: 10rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+/* 隔行变色 */
+.province view:nth-child(even),
+.cities view:nth-child(even),
+.county view:nth-child(even) {
+    background-color: #f8f8f8;
+}
+.end{
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
