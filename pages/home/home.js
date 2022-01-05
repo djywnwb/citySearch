@@ -140,7 +140,6 @@ Page({
     // 点击搜索
     clickSearch() {
         if (!this.data.btntimer) {
-            console.log(2);
             // 用户第一次直接点击搜索 需要先获取剩余数据
             if (this.data.choose === 0) { //搜索省份时执行的操作
                 if (!this.data.provinceflag) {
