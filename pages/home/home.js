@@ -37,13 +37,19 @@ Page({
 
     },
     // 点击按钮请求数据 并弹出mask 
-    popupmask(callback) {
+    popupmask() {
         // 弹出遮罩层 
         this.setData({
             maskstate: true,
             pull: true
         })
-        // 判断省份数据书否请求完毕  没有则继续获取数据 
+        // 获取数据
+       this.getData()
+
+    },
+    // 获取数据
+    getData(callback) {
+         // 判断省份数据书否请求完毕  没有则继续获取数据 
         if (!this.data.provinceflag) {
             let that = this
             // 请求15条省会数据（总共34条数据）
@@ -66,6 +72,7 @@ Page({
                 }
             })
         }
+
     },
     // 获取下页数据
     lodingData() {
@@ -73,10 +80,8 @@ Page({
         if (!this.data.pull) {
             // 判断获取什么数据
             if (this.data.choose === 0) {
-                this.popupmask()
-            } else if (this.data.choose === 1) {
-                // this.getcities()
-            }
+                this.getData()
+            } 
 
         }
     },
@@ -127,33 +132,35 @@ Page({
             maskstate: false,
             // 重置选择框顺序
             choose: 0,
-            inputval: ''
-
+            inputval: '',
+            query: '',
+            province: this.data.provincebackup
         })
     },
     // 点击搜索
     clickSearch() {
         if (!this.data.btntimer) {
-            this.setData({
-                // 一秒后打开时间节流阀
-                btntimer: setTimeout(() => {
-                    this.setData({
-                        btntimer: null
-                    })
-                }, 1000),
-                // 获得搜索关键字
-                query: this.data.clickSearch
-            })
+            console.log(2);
             // 用户第一次直接点击搜索 需要先获取剩余数据
             if (this.data.choose === 0) { //搜索省份时执行的操作
                 if (!this.data.provinceflag) {
                     // 还未获取完毕数据
-                    this.popupmask(() => {
+                    this.getData(() => {
                         // 再次调用搜索事件，直到数据获取完毕，执行搜索逻辑
                         this.clickSearch()
-
                     })
                 } else {
+                    // 数据获取完毕后可搜索，并打开时间节流阀，限制一秒内点击次数
+                    this.setData({
+                        // 一秒后打开时间节流阀
+                        btntimer: setTimeout(() => {
+                            this.setData({
+                                btntimer: null
+                            })
+                        }, 1000),
+                        // 获得搜索关键字
+                        query: this.data.clickSearch
+                    })
                     // 搜索逻辑
                     // 遍历数组 过滤关键字
                     let arr = []
@@ -192,8 +199,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-    },
+    onLoad: function (options) {},
 
     /**
      * 生命周期函数--监听页面初次渲染完成

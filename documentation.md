@@ -2,29 +2,11 @@
 
 
 
-## API
-
-查询数据库API
-
-```text
-POST https://api.weixin.qq.com/tcb/databasequery?access_token=ACCESS_TOKEN
-```
-
-
-
-字段说明：
-
-|   请求属性   |  类型  | 必填 |      说明      |
-| :----------: | :----: | :--: | :------------: |
-| access_token | string |  是  |  接口调用凭证  |
-|     env      | string |  是  |    云环境ID    |
-|    query     | string |  是  | 数据库操作语句 |
-
-
+## 
 
 ## 数据
 
-
+使用微信云数据库
 
 展示其中一条数据格式
 说明： 
